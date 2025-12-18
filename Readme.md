@@ -1,12 +1,4 @@
-Este Readme é um modelo que pode ser usado para os repositórios no GitHub de projetos feitos para a atividade de Extensão Hackerspace, da Universidade Federal de São Carlos - Campus Sorocaba, organizada pelo hackerspace [HackoonSpace](https://hackoonspace.com/). É importante observar que alguns campos e informações são opcionais, e que não é necessário seguir rigorosametne o modelo proposto. O objetivo é que, obrigatóriamente, os grupos coloquem em seus repositórios as informações requisitadas aqui, porém o formato em si pode ou não seguir o modelo.
-
-Além disso, para cada tópico, existem alguns possíveis exemplos de como o grupo pode apresentar as informações sobre o projeto (ex: lista enumerada, texto descritivo, etc). Alguns tópicos possuem comandos que só podem ser melhor visualizados na versão Raw ou txt do Readme.
-
-É preferível que a linguagem da documentação esteja em português, mas também é aceito que esteja em inglês.
-
-Para responder quaisquer dúvidas, entrar em contato com a equipe do HackoonSpace.
-
-# Titulo do projeto
+# Execução de um jogo Linux no Windows através de WSL
 
 ## Conceito do projeto
 Aqui vocês definem o conceito do projeto, explicando sucintamente sobre o que ele se trata, qual a finalidade/utilidade, etc. 1-2 parágrafos já são suficientes, desde que bem explicados, mas sintam-se a vontade para escrever mais. Também sintam-se a vontade para usar a criatividade.
@@ -83,3 +75,4 @@ Para colocar imagens no Readme do Github, vocês podem usar o seguinte comando (
 ![Imagem](https://github.com/hackoonspace/Hackoonspace-template/blob/master/exemplo.png)
 
 É preferível que vocês usem imagens hospedadas no próprio GitHub do projeto. É só referenciar o link delas no comando acima.
+
