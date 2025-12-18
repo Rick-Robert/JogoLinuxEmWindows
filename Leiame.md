@@ -91,5 +91,5 @@ Este trabalho abre possibilidades para estudos futuros relacionados à execuçã
 
 Exemplo de inserção de imagem no README:
 
-![Imagem](https://github.com/Rick-Robert/JogoLinuxEmWindows/main/exemplo.png)
+![Imagem](https://github.com/Rick-Robert/JogoLinuxEmWindows/blob/main/exemplo.png)
 
