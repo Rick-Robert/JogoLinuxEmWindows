@@ -1,78 +1,109 @@
 # Execução de um jogo Linux no Windows através de WSL
 
 ## Conceito do projeto
-Aqui vocês definem o conceito do projeto, explicando sucintamente sobre o que ele se trata, qual a finalidade/utilidade, etc. 1-2 parágrafos já são suficientes, desde que bem explicados, mas sintam-se a vontade para escrever mais. Também sintam-se a vontade para usar a criatividade.
 
-### Exemplo:
+Este projeto tem como objetivo viabilizar a execução de um jogo nativo de Linux em ambiente Windows, utilizando o Windows Subsystem for Linux 2 (WSL2), com foco na criação de Tool-Assisted Speedruns (TAS). Para isso, foi explorado o uso da ferramenta LibTAS, amplamente empregada na comunidade de speedrunning em sistemas Linux, permitindo controle preciso de entradas, execução determinística e análise quadro a quadro do jogo.
 
-Este projeto foi desenvolvido com o intuíto de facilitar a manuntenção de aplicações Web contra invasões indesejadas do tipo XYZ. Para isto, foi implementado um programa que realizasse a checagem de pacotes recebidos por um Website com host local em uma máquina com Windows, buscando traços de possíveis códigos maliciosos que possam interferir na execução habitual do servidor da aplicação.
-  
+O jogo escolhido para os experimentos foi Hollow Knight (versão Linux), por se tratar de um jogo 2D relativamente leve, popular na comunidade de speedruns e amplamente documentado. O projeto investiga a compatibilidade gráfica e o desempenho da execução do jogo dentro do WSL2 no Windows 11, avaliando limitações, erros gráficos e estabilidade, bem como as possibilidades futuras para estudos envolvendo virtualização e execução cruzada de aplicações gráficas.
+
+---
+
 ## Pré-requisitos e recursos utilizados
-Citação das linguagens, bibliotecas, peças de hardware, e outras coisas que o grupo utilizou para realizar o projeto. Não é necessário explicar qual foi o uso exato de cada coisa no projeto. Bibliotecas e recursos padrões das tecnologias utilizadas não precisam ser citados (ex: stdio.h, iostream.h, etc.).
 
-Se alguma biblioteca externa ou código de outra pessoa foi utilizado como recurso, é importante citar a fonte de onde vocês retiraram (pode ser o link no Github, ou tutorial usado como referência).
+O projeto utilizou os seguintes recursos e tecnologias:
 
-### Exemplo:
+- Sistema Operacional: Windows 11  
+- Windows Subsystem for Linux 2 (WSL2)  
+- Distribuição Linux: Ubuntu (executada dentro do WSL2)  
+- Jogo: Hollow Knight (versão nativa para Linux)  
+- Ferramenta de TAS: LibTAS  
 
-O grupo utilizou a linguagem C para desenvolver a implementação geral do projeto, além de importar as seguintes bibliotecas:
-1. abcdzd.h
-2. exemplo.h, disponível em [IstoEhApenasUmExemplo](https://github.com/istoehapenasumexemplo/minhabiblioteca)
+Como material de apoio, foi utilizado o tutorial oficial do LibTAS disponível em:  
+https://clementgallet.github.io/libTAS/guides/wsl  
 
-Também foi utilizado o tutorial disponível em [IstoEhOutroExemplo](https://github.com/istoehoutroexemplo/oi) como base para o grupo compreender a implementação da função X dentro da linguagem em questão.
-  
+O LibTAS foi obtido a partir do repositório oficial de releases:  
+https://github.com/clementgallet/libTAS/releases/tag/v1.4.7  
+
+---
+
 ## Passo a passo
-Passos que o grupo realizou para criar, implementar ou projetar o projeto. É importante descrever pelo menos o mais importante para que outras pessoas compreendam como o grupo conseguiu realizar o projeto, quais as atividades feitas, etc, e possam ter meios compreender como reproduzir o projeto, se assim fosse necessário.
 
-Se possível, é legal citar o nome dos arquivos implementados, se forem poucos. Por exemplo, se o seu projeto tiver 4 arquivos, cada um com uma função, citar o nome deles na parte do passo a passo correspondente. Se forem muitos arquivos para uma mesma coisa, não tem problema, podem deixar sem ou deixar apenas o nome da pasta.
+1. Instalação do WSL2 no Windows 11 por meio do PowerShell utilizando o comando: wsl --install
+2. Instalação de uma distribuição Linux (Ubuntu) dentro do WSL2.
+3. Download da versão Linux do jogo Hollow Knight e cópia dos arquivos para o sistema de arquivos do WSL.
+4. Download e instalação do LibTAS utilizando o pacote `.deb` correspondente à arquitetura do sistema: sudo dpkg -i ./libtas_*_amd64.deb
+5. Execução do LibTAS diretamente pelo terminal Ubuntu com o comando: libTAS
+6. Tentativa inicial de execução do jogo via script `start.sh`, resultando em erro relacionado ao OpenGL.
+7. Identificação do problema na variável de ambiente `$DISPLAY`.
+8. Correção do erro gráfico ajustando a variável: export DISPLAY=:0
+(ou adicionando essa linha ao arquivo `.bashrc` para tornar a configuração permanente).
+9. Execução do jogo forçando o uso do OpenGL colocando a flag -force-opengl no arquivo start.sh. Ou se for uma execução direta ./HollowKnight -force-opengl na pasta onde está o executável (transformado em executável geralmente através do comando no Ubuntu chmod +x HollowKnight).
 
-### Exemplo:
+10. Testes de execução e observação de falhas gráficas e encerramento prematuro do jogo após aproximadamente 10 minutos.
 
-1. Baixamos o material disponível em [Material](https://materialdeexemplodohackerspace.com.br)
-2. Estudamos como o código do material anterior funciona
-3. Implementamos um programa que se comunicasse com o código compreendido (comunicacao.c e comunicacao.h)
-4. Implementamos uma interface gráfica para utilizar o programa de comunicação de forma mais intuitiva.
+---
 
 ## Instalação
-Passos necessários para instalar ou recriar seu projeto, se assim for necessário. A descrição dos passos não precisa ser complexa. É necessário apenas o mais importante para que outras pessoas saibam como fazê-lo.
 
-### Exemplos:
-a)
-  ```
-  Execute o comando X Y Z, no terminal, na pasta do projeto
-  ```
-b)
-  1. Abra a pasta 
-  2. Execute o comando A B C no terminal
-  3. Compile os arquivos X, Y e Z juntos
-  4. Crie um arquivo W.txt de entrada
+1. Abra o PowerShell no Windows 11.
+2. Execute o comando: wsl --install
+3. Reinicie o sistema, se necessário.
+4. Abra o terminal Ubuntu (WSL).
+5. Instale o LibTAS com: sudo dpkg -i ./libtas_*_amd64.deb
+6. Copie os arquivos do jogo Hollow Knight (versão Linux) para o sistema de arquivos do WSL (por praticidade).
+
+---
 
 ## Execução
-Passos necessários para executar, rodar ou testar seu projeto. Vocês podem seguir o mesmo modelo dos exemplos de Instalação.
+
+1. No terminal Ubuntu (WSL), configure a variável de ambiente: export DISPLAY=:0
+2. Execute o LibTAS com: libTAS
+3. Execução do jogo forçando o uso do OpenGL colocando a flag -force-opengl no arquivo start.sh. Ou se for uma execução direta ./HollowKnight -force-opengl na pasta onde está o executável (transformado em executável geralmente através do comando no Ubuntu chmod +x HollowKnight).
+
+5. Observe o comportamento do jogo durante a execução.
+
+---
 
 ## Bugs/problemas conhecidos
-Lista de possíveis problemas, bugs, falhas ou comportamentos esquisitos que o grupo conheça sobre o projeto. Esta seção é importante para que outras pessoas saibam quais tipos de erros elas podem encontrar. Seria legal citar motivos que o grupo acredita que sejam os causadores destas coisas, mas não é obrigatório.
 
-### Exemplo:
+- O jogo encerra de forma inesperada após cerca de 10 minutos de execução.
+- Ocorrência de distorções visuais nos shaders, afetando a estética do jogo.
+- Possíveis incompatibilidades na conversão gráfica entre Linux e Windows via WSL2.
+- Problemas iniciais de exibição gráfica causados por configuração incorreta da variável `$DISPLAY`.
 
-O projeto possui uma falha ao abrir a aba INICIO, após realizar uma inserção com caractéres acentuados. Também foi encontrada uma falha ao definir a tela de fundo com a cor Roxa, provavelmente por conta da palheta de cores limitada da tecnologia que foi utilizada.
+---
 
 ## Autores
-Aqui, é importante referenciar o nome dos integrantes do grupo. Não precisa de RA. Outras informações, como contato ou perfil no Github, ficam a critério do grupo. Se o grupo for muito grande, é bom referenciar as funções de cada um.
 
-### Exemplo:
-* Marcus Vinícius N. Garcia ([Infinitemarcus](https://github.com/Infinitemarcus))
-* Garcia Neto Junior da Silva
-* João das Neves - Desenvolvedor do Back-End
+- Rick Robert
 
-## Demais anotações e referências (opcional)
-Aqui, o grupo pode colocar quaisquer outras informações que ache relevante, se assim desejar. Links de referências e materiais de estudo utilizados ou recomendados são sempre bem vindos. 
+---
+
+## Demais anotações e referências
+
+Este trabalho abre possibilidades para estudos futuros relacionados à execução de jogos nativos de outros sistemas operacionais, uso de máquinas virtuais e subsistemas, bem como aplicações que demandam maior processamento gráfico em ambientes virtualizados.
+
+---
 
 ## Imagens/screenshots
-É necessário colocar pelo menos 3 imagens/screenshots do projeto, porém fiquem a vontade para colocar mais, a medida do que vocês acharem legal para ilustrar o projeto.
 
-Para colocar imagens no Readme do Github, vocês podem usar o seguinte comando (abrir este Readme no modo raw ou como txt):
+O primeiro teste e que despende de menos recursos gráficos é a execução da interface do libTAS, já que esta é simples e não requer um grande esforço dos recursos físicos. O resultado foi um sucesso conforme a seguinte imagem que também mostra qual o Sistema Operacional que está sendo mostrado a interface.
 
-![Imagem](https://github.com/hackoonspace/Hackoonspace-template/blob/master/exemplo.png)
+![Imagem](https://github.com/Rick-Robert/JogoLinuxEmWindows/blob/main/libTASW11.png)
 
-É preferível que vocês usem imagens hospedadas no próprio GitHub do projeto. É só referenciar o link delas no comando acima.
+A outra peça importante para a execução da Tool Assisted Speedrun (TAS) é o jogo, e conforme a seguinte imagem é possível ver que foi viável abrir o jogo. Também como as informações que são mostradas durante a execução do jogo e alguns dados sobre a parte gráfica por parte do openGL.
+
+![Imagem](https://github.com/Rick-Robert/JogoLinuxEmWindows/blob/main/HkOpenGLInfo.png)
+
+Além disso, foi possível chegar em Dirtmouth (área inicial do jogo) sem com que o jogo parasse. Imagem acompanhada de informação da RAM e processado do dispositivo em que foi executado o jogo através do WSL2.
+
+![Imagem](https://github.com/Rick-Robert/JogoLinuxEmWindows/blob/main/DirMouthRAM.png)
+
+E por fim, foi possível executar o jogo utilizando a interface do libTAS que coloca informações como inputs recebidos e fps que o jogo está rodando. É possível ver também um dos bugs de shader comentados anteriormente.
+
+![Imagem](https://github.com/Rick-Robert/JogoLinuxEmWindows/blob/main/libTASrunning.png)
+
+## Conclusão
+
+Por mas que não seja uma execução ótima, ainda é possível, com paciência, dedicação e esforço realizar uma TAS com ferramentas e jogo de Linux no Windows através do Windows Subsystem Linux 2 (WSL2) ao invés de uma abordagem dual-boot. Mesmo com suas limitações, conseguimos extrair o máximo das ferramentas usando a criatividade.
 
