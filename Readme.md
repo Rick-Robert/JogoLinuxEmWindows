@@ -1,4 +1,4 @@
-# Execução de um jogo Linux no Windows através de WSL
+# Execução de um jogo Linux no Windows através de WSL 2
 
 ## Conceito do projeto
 
