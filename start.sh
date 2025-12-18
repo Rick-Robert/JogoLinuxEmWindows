@@ -16,8 +16,8 @@ VERSION_DEV="$(get_gameinfo 3)"
 run_game() { 
 echo "Running ${GAME_NAME}" 
 cd "${CURRENT_DIR}/game" 
-chmod +x * 
- ./"Hollow Knight" -force-opengl 
+chmod +x * #Faz ser executável
+ ./"Hollow Knight" -force-opengl #força a ser usado o OpenGL
 
 }
 default() { 
