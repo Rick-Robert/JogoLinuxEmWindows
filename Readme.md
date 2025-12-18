@@ -97,7 +97,7 @@ A outra peça importante para a execução da Tool Assisted Speedrun (TAS) é o 
 
 Além disso, foi possível chegar em Dirtmouth (área inicial do jogo) sem com que o jogo parasse. Imagem acompanhada de informação da RAM e processado do dispositivo em que foi executado o jogo através do WSL2.
 
-![Imagem](https://github.com/Rick-Robert/JogoLinuxEmWindows/blob/main/DirMouthRAM.png)
+![Imagem](https://github.com/Rick-Robert/JogoLinuxEmWindows/blob/main/DirtMouthRAM.png)
 
 E por fim, foi possível executar o jogo utilizando a interface do libTAS que coloca informações como inputs recebidos e fps que o jogo está rodando. É possível ver também um dos bugs de shader comentados anteriormente.
 
