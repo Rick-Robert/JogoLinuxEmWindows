@@ -1,4 +1,4 @@
-# Execução de um jogo Linux no Windows através de WSL 2
+# Execução de um jogo Linux no Windows através de WSL 2: Uma Tool-Assisted Speedrun (TAS)
 
 ## Conceito do projeto
 
