@@ -82,6 +82,7 @@ https://github.com/clementgallet/libTAS/releases/tag/v1.4.7
 ## Demais anotações e referências
 
 Este trabalho abre possibilidades para estudos futuros relacionados à execução de jogos nativos de outros sistemas operacionais, uso de máquinas virtuais e subsistemas, bem como aplicações que demandam maior processamento gráfico em ambientes virtualizados.
+Adicionado posteriormente há um exemplo de sequência de inputs, contida no arquivo "Hollow Knight".ltm, que fazem uma execução não otimizada para derrotar o chefe Mãe-Mosca partindo do banco de Dirtmouth.
 
 ---
 
